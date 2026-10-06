@@ -1,0 +1,136 @@
+{
+  "nav": {
+    "firm": "Le Cabinet",
+    "team": "Équipe",
+    "services": "Services",
+    "industries": "Secteurs",
+    "international": "International",
+    "insights": "Publications",
+    "careers": "Carrières",
+    "contact": "Contact",
+    "contactCta": "Nous contacter"
+  },
+  "footer": {
+    "officesTitle": "Bureaux",
+    "contactTitle": "Contact",
+    "followTitle": "Suivez-nous",
+    "legalMentions": "Mentions légales",
+    "privacyPolicy": "Politique de confidentialité",
+    "rightsReserved": "Tous droits réservés.",
+    "workingHours": "Horaires"
+  },
+  "common": {
+    "readMore": "En savoir plus",
+    "learnMore": "Découvrir",
+    "viewAll": "Voir tout",
+    "backToOverview": "Retour à la vue d'ensemble",
+    "draftBadge": "Contenu provisoire",
+    "confirmedBadge": "Confirmé",
+    "toBeConfirmed": "À confirmer",
+    "contactUs": "Contactez-nous",
+    "sendMessage": "Envoyer le message",
+    "requestFields": "Champs requis"
+  },
+  "home": {
+    "heroEyebrow": "Audit · Expertise comptable · Conseil",
+    "heroTitleFallback": "[ACCROCHE PRINCIPALE À FOURNIR PAR TATY & ASSOCIÉS]",
+    "heroSubtitleFallback": "[SOUS-TITRE / PROMESSE DE MARQUE À FOURNIR]",
+    "heroCtaPrimary": "Découvrir le cabinet",
+    "heroCtaSecondary": "Nos services",
+    "introTitle": "Présentation de TATY & Associés",
+    "servicesTitle": "Nos domaines d'intervention",
+    "servicesSubtitle": "Un accompagnement structuré autour de huit pôles d'expertise.",
+    "industriesTitle": "Secteurs d'activité",
+    "industriesSubtitle": "Une organisation par secteur, au service d'une compréhension fine de vos enjeux.",
+    "whyTitle": "Pourquoi choisir TATY & Associés",
+    "internationalTitle": "Capacités internationales",
+    "internationalSubtitle": "Un point d'appui local pour les groupes, investisseurs et auditeurs internationaux en Côte d'Ivoire.",
+    "internationalCta": "Découvrir nos services internationaux",
+    "insightsTitle": "Publications & analyses",
+    "insightsSubtitle": "Regards du cabinet sur l'audit, la comptabilité, l'IFRS, l'OHADA et l'environnement des affaires ivoirien.",
+    "contactTitle": "Parlons de votre projet",
+    "contactSubtitle": "Notre équipe est à votre disposition pour échanger sur vos besoins en audit, comptabilité ou conseil."
+  },
+  "firm": {
+    "title": "Le Cabinet",
+    "eyebrow": "TATY & Associés",
+    "whoWeAre": "Qui sommes-nous",
+    "history": "Notre histoire",
+    "mission": "Notre mission",
+    "vision": "Notre vision",
+    "values": "Nos valeurs",
+    "independence": "Indépendance",
+    "ethics": "Éthique",
+    "quality": "Qualité",
+    "standards": "Normes professionnelles",
+    "internationalCooperation": "Coopération internationale"
+  },
+  "team": {
+    "title": "Notre Équipe",
+    "eyebrow": "Les personnes derrière TATY & Associés",
+    "intro": "[PRÉSENTATION DE L'ÉQUIPE À FOURNIR]",
+    "qualifications": "Qualifications",
+    "expertise": "Domaines d'expertise",
+    "industries": "Secteurs",
+    "languages": "Langues",
+    "placeholderNote": "Les profils ci-dessous sont des emplacements réservés en attente des informations officielles de TATY & Associés."
+  },
+  "services": {
+    "title": "Nos Services",
+    "eyebrow": "Domaines d'intervention",
+    "intro": "Les services ci-dessous décrivent l'architecture prévue des prestations de TATY & Associés. Chaque prestation reste marquée « à confirmer » tant qu'elle n'a pas été validée officiellement par le cabinet.",
+    "possibleScope": "Périmètre possible",
+    "statusNote": "La disponibilité effective de ce service sera confirmée par TATY & Associés."
+  },
+  "industries": {
+    "title": "Secteurs d'activité",
+    "eyebrow": "Une approche sectorielle",
+    "intro": "TATY & Associés structure son offre autour des secteurs suivants. L'expérience sectorielle effective sera précisée au fur et à mesure de sa confirmation.",
+    "experienceToBeConfirmed": "[EXPÉRIENCE SECTORIELLE À CONFIRMER]"
+  },
+  "international": {
+    "title": "Services Internationaux",
+    "eyebrow": "Un point d'appui en Côte d'Ivoire",
+    "intro": "TATY & Associés a vocation à accompagner localement les groupes internationaux, investisseurs étrangers et équipes d'audit de groupe présents ou souhaitant s'implanter en Côte d'Ivoire et dans l'espace OHADA. La disponibilité de chaque prestation ci-dessous reste à confirmer par le cabinet.",
+    "audiencesTitle": "Pour qui",
+    "capabilitiesTitle": "Domaines d'accompagnement potentiels"
+  },
+  "insights": {
+    "title": "Publications & Analyses",
+    "eyebrow": "Regards d'experts",
+    "intro": "Cette rubrique présentera les analyses du cabinet sur l'audit, la comptabilité, l'IFRS, l'OHADA, la fiscalité, l'ESG et l'environnement des affaires en Côte d'Ivoire.",
+    "draftNotice": "Article provisoire — contenu de démonstration, non publié par TATY & Associés.",
+    "categoriesTitle": "Catégories",
+    "publishedOn": "Publié le"
+  },
+  "careers": {
+    "title": "Carrières",
+    "eyebrow": "Rejoindre TATY & Associés",
+    "intro": "[TEXTE DE PRÉSENTATION RH À FOURNIR PAR TATY & ASSOCIÉS]",
+    "internships": "Stages",
+    "graduate": "Jeunes diplômés",
+    "experienced": "Professionnels expérimentés",
+    "applicationTitle": "Candidature spontanée",
+    "formName": "Nom complet",
+    "formEmail": "Email",
+    "formPhone": "Téléphone",
+    "formPosition": "Poste souhaité",
+    "formMessage": "Message",
+    "formCv": "CV (à joindre par email pour cette première version du site)",
+    "submit": "Envoyer ma candidature"
+  },
+  "contact": {
+    "title": "Contact",
+    "eyebrow": "Échangeons",
+    "intro": "Une question, un projet d'audit, de comptabilité ou de conseil ? Notre équipe vous répond.",
+    "formName": "Nom complet",
+    "formCompany": "Société",
+    "formEmail": "Email",
+    "formPhone": "Téléphone",
+    "formSubject": "Objet",
+    "formMessage": "Votre message",
+    "submit": "Envoyer",
+    "officeTitle": "Nos bureaux",
+    "mapPending": "[CARTE GOOGLE MAPS À INTÉGRER]"
+  }
+}

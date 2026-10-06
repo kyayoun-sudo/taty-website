@@ -1,0 +1,84 @@
+@import "tailwindcss";
+
+/* ==========================================================================
+   TATY & ASSOCIÉS — DESIGN TOKENS
+   --------------------------------------------------------------------------
+   Central place to adjust the visual identity. Until the official brand
+   guidelines are provided, these are deliberately restrained placeholder
+   values (deep navy + warm gold on ivory) chosen to read as a serious
+   audit/advisory firm. Change the values below — every component that
+   uses `bg-brand-primary`, `text-brand-accent`, `font-display` etc. will
+   update automatically; no component needs to be touched.
+   ========================================================================== */
+
+:root {
+  /* --- Brand colours (placeholders — replace with official TATY palette) --- */
+  --color-brand-primary: #0b2545; /* deep navy — primary brand colour */
+  --color-brand-primary-dark: #071a33;
+  --color-brand-accent: #a9812e; /* warm gold — accent / CTA colour */
+  --color-brand-accent-light: #c9a55c;
+
+  /* --- Neutrals --- */
+  --color-ink: #171a1f; /* main text */
+  --color-ink-muted: #4a5261;
+  --color-paper: #ffffff;
+  --color-paper-muted: #f6f5f2; /* warm off-white section background */
+  --color-line: #e3e1db;
+
+  /* --- Feedback colours (status system) --- */
+  --color-status-draft: #b45309;
+  --color-status-draft-bg: #fef3e2;
+  --color-status-confirmed: #166534;
+  --color-status-confirmed-bg: #eafaf0;
+
+  /* --- Fonts (placeholders — swap for the official TATY typefaces) ---
+     --font-display-family / --font-body-family are left undefined here on
+     purpose: once real brand fonts are wired up via next/font in
+     app/layout.tsx, its generated CSS variable overrides these names.
+     Until then the stacks below (system serif / system sans) apply. --- */
+  --font-display: var(--font-display-family, Georgia, "Times New Roman", serif);
+  --font-body: var(--font-body-family, -apple-system, "Segoe UI", Helvetica, Arial, sans-serif);
+
+  --background: var(--color-paper);
+  --foreground: var(--color-ink);
+}
+
+@theme inline {
+  --color-brand-primary: var(--color-brand-primary);
+  --color-brand-primary-dark: var(--color-brand-primary-dark);
+  --color-brand-accent: var(--color-brand-accent);
+  --color-brand-accent-light: var(--color-brand-accent-light);
+  --color-ink: var(--color-ink);
+  --color-ink-muted: var(--color-ink-muted);
+  --color-paper: var(--color-paper);
+  --color-paper-muted: var(--color-paper-muted);
+  --color-line: var(--color-line);
+  --color-status-draft: var(--color-status-draft);
+  --color-status-draft-bg: var(--color-status-draft-bg);
+  --color-status-confirmed: var(--color-status-confirmed);
+  --color-status-confirmed-bg: var(--color-status-confirmed-bg);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-display: var(--font-display);
+  --font-sans: var(--font-body);
+}
+
+body {
+  background: var(--color-paper);
+  color: var(--color-ink);
+  font-family: var(--font-body);
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  letter-spacing: -0.01em;
+}
+
+::selection {
+  background: var(--color-brand-accent-light);
+  color: var(--color-brand-primary-dark);
+}
+
+.container-max {
+  max-width: 80rem;
+}
