@@ -14,14 +14,58 @@ export function ContactForm({
   initialSubject?: string;
   initialMessage?: string;
 }) {
-  const [submitted, setSubmitted] = useState(false);
+  const [status, setStatus] = useState<
+    "idle" | "sending" | "success" | "error"
+  >("idle");
+
+  async function handleSubmit(
+    e: React.FormEvent<HTMLFormElement>
+  ) {
+    e.preventDefault();
+
+    setStatus("sending");
+
+    const form = e.currentTarget;
+    const formData = new FormData(form);
+
+    const payload = {
+      name: formData.get("name"),
+      company: formData.get("company"),
+      email: formData.get("email"),
+      phone: formData.get("phone"),
+      subject: formData.get("subject"),
+      message: formData.get("message"),
+      website: formData.get("website"),
+    };
+
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(payload),
+      });
+
+      const result = await response.json();
+
+      if (!response.ok || !result.success) {
+        throw new Error(
+          result.error || "Unable to send message"
+        );
+      }
+
+      setStatus("success");
+      form.reset();
+    } catch (error) {
+      console.error(error);
+      setStatus("error");
+    }
+  }
 
   return (
     <form
-      onSubmit={(e) => {
-        e.preventDefault();
-        setSubmitted(true);
-      }}
+      onSubmit={handleSubmit}
       className="flex flex-col gap-5 border border-line bg-paper p-8"
     >
       <div>
@@ -68,13 +112,12 @@ export function ContactForm({
         label={dict.contact.formSubject}
         name="subject"
         defaultValue={initialSubject}
-        required
       />
 
       <div>
         <label
-          className="mb-1.5 block text-sm font-medium text-ink"
           htmlFor="message"
+          className="mb-1.5 block text-sm font-medium text-ink"
         >
           {dict.contact.formMessage}
           <span className="text-brand-accent"> *</span>
@@ -90,18 +133,46 @@ export function ContactForm({
         />
       </div>
 
+      {/* Champ invisible anti-spam */}
+      <div className="hidden" aria-hidden="true">
+        <label htmlFor="website">
+          Website
+        </label>
+
+        <input
+          id="website"
+          name="website"
+          type="text"
+          tabIndex={-1}
+          autoComplete="off"
+        />
+      </div>
+
       <button
         type="submit"
-        className="mt-2 inline-flex w-fit items-center justify-center border border-brand-primary bg-brand-primary px-6 py-3 text-sm font-medium text-white hover:bg-brand-primary-dark"
+        disabled={status === "sending"}
+        className="mt-2 inline-flex w-fit items-center justify-center border border-brand-primary bg-brand-primary px-6 py-3 text-sm font-medium text-white hover:bg-brand-primary-dark disabled:cursor-not-allowed disabled:opacity-60"
       >
-        {dict.contact.submit}
+        {status === "sending"
+          ? locale === "fr"
+            ? "Envoi..."
+            : "Sending..."
+          : dict.contact.submit}
       </button>
 
-      {submitted && (
+      {status === "success" && (
         <p className="text-sm text-status-confirmed">
           {locale === "fr"
-            ? "Merci. Votre demande a bien été préparée."
-            : "Thank you. Your request has been prepared."}
+            ? "Merci. Votre demande a bien été envoyée à TATY & Associés. Nous vous répondrons dans les meilleurs délais."
+            : "Thank you. Your request has been sent to TATY & Associés. We will get back to you shortly."}
+        </p>
+      )}
+
+      {status === "error" && (
+        <p className="text-sm text-red-700">
+          {locale === "fr"
+            ? "Une erreur est survenue lors de l'envoi. Vous pouvez également nous écrire directement à info@taty.info."
+            : "An error occurred while sending your request. You can also contact us directly at info@taty.info."}
         </p>
       )}
     </form>
