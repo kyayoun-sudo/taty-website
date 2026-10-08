@@ -17,36 +17,6 @@ export interface TeamMember {
 
 type TeamMemberInput = Omit<TeamMember, "photo">;
 
-const languagesPending: LocalizedText[] = [
-  {
-    fr: "[LANGUES À CONFIRMER]",
-    en: "[LANGUAGES TO BE CONFIRMED]",
-  },
-];
-
-const industriesPending: LocalizedText[] = [
-  {
-    fr: "[SECTEURS À CONFIRMER]",
-    en: "[INDUSTRIES TO BE CONFIRMED]",
-  },
-];
-
-/**
- * Les photos sont automatiquement cherchées dans :
- *
- * public/assets/team/
- *
- * Le nom du fichier doit être exactement :
- *
- * {id}.jpg
- *
- * Exemple :
- * id: "konan-yannick"
- * => public/assets/team/konan-yannick.jpg
- *
- * Plus besoin de modifier ce fichier lorsque tu ajoutes une photo.
- */
-
 const teamMembers: TeamMemberInput[] = [
   {
     id: "taty-hippolyte-landry",
@@ -149,7 +119,7 @@ const teamMembers: TeamMemberInput[] = [
         en: "Firm strategy and development",
       },
     ],
-    industries: industriesPending,
+    industries: [],
     languages: [
       {
         fr: "Français — bon",
@@ -190,8 +160,8 @@ const teamMembers: TeamMemberInput[] = [
         en: "Audit and engagement supervision",
       },
     ],
-    industries: industriesPending,
-    languages: languagesPending,
+    industries: [],
+    languages: [],
     bio: {
       fr: "12 ans d'expérience professionnelle. En qualité d'auditeur et manager, Monsieur KOUAME élabore et exécute les axes essentiels des programmes de travail, en assure la synthèse et rédige les projets de rapports des missions confiées au cabinet.",
       en: "12 years of professional experience. As auditor and manager, Mr. KOUAME develops and executes the key work programme areas, prepares the summaries, and drafts the report proposals for the firm's engagements.",
@@ -312,8 +282,8 @@ const teamMembers: TeamMemberInput[] = [
         en: "Procurement",
       },
     ],
-    industries: industriesPending,
-    languages: languagesPending,
+    industries: [],
+    languages: [],
     bio: {
       fr: "13 ans d'expérience professionnelle au sein du cabinet.",
       en: "13 years of professional experience at the firm.",
@@ -344,8 +314,8 @@ const teamMembers: TeamMemberInput[] = [
         en: "Procurement",
       },
     ],
-    industries: industriesPending,
-    languages: languagesPending,
+    industries: [],
+    languages: [],
     bio: {
       fr: "13 ans d'expérience professionnelle au sein du cabinet.",
       en: "13 years of professional experience at the firm.",
@@ -376,8 +346,8 @@ const teamMembers: TeamMemberInput[] = [
         en: "Audit, procurement",
       },
     ],
-    industries: industriesPending,
-    languages: languagesPending,
+    industries: [],
+    languages: [],
     bio: {
       fr: "8 ans d'expérience professionnelle au sein du cabinet.",
       en: "8 years of professional experience at the firm.",
@@ -408,8 +378,8 @@ const teamMembers: TeamMemberInput[] = [
         en: "Audit, procurement",
       },
     ],
-    industries: industriesPending,
-    languages: languagesPending,
+    industries: [],
+    languages: [],
     bio: {
       fr: "5 ans d'expérience professionnelle au sein du cabinet.",
       en: "5 years of professional experience at the firm.",
@@ -440,8 +410,8 @@ const teamMembers: TeamMemberInput[] = [
         en: "Financial and accounting audit",
       },
     ],
-    industries: industriesPending,
-    languages: languagesPending,
+    industries: [],
+    languages: [],
     bio: {
       fr: "3 ans d'expérience professionnelle au sein du cabinet.",
       en: "3 years of professional experience at the firm.",
@@ -472,8 +442,8 @@ const teamMembers: TeamMemberInput[] = [
         en: "Accounting review",
       },
     ],
-    industries: industriesPending,
-    languages: languagesPending,
+    industries: [],
+    languages: [],
     bio: {
       fr: "4 ans d'expérience professionnelle au sein du cabinet.",
       en: "4 years of professional experience at the firm.",
@@ -504,8 +474,8 @@ const teamMembers: TeamMemberInput[] = [
         en: "Accounting review",
       },
     ],
-    industries: industriesPending,
-    languages: languagesPending,
+    industries: [],
+    languages: [],
     bio: {
       fr: "2 ans d'expérience professionnelle au sein du cabinet.",
       en: "2 years of professional experience at the firm.",
@@ -536,8 +506,8 @@ const teamMembers: TeamMemberInput[] = [
         en: "IT audit",
       },
     ],
-    industries: industriesPending,
-    languages: languagesPending,
+    industries: [],
+    languages: [],
     bio: {
       fr: "10 ans d'expérience professionnelle au sein du cabinet.",
       en: "10 years of professional experience at the firm.",
@@ -568,8 +538,8 @@ const teamMembers: TeamMemberInput[] = [
         en: "Information systems",
       },
     ],
-    industries: industriesPending,
-    languages: languagesPending,
+    industries: [],
+    languages: [],
     bio: {
       fr: "5 ans d'expérience professionnelle au sein du cabinet.",
       en: "5 years of professional experience at the firm.",
@@ -600,8 +570,8 @@ const teamMembers: TeamMemberInput[] = [
         en: "Financial and accounting audit",
       },
     ],
-    industries: industriesPending,
-    languages: languagesPending,
+    industries: [],
+    languages: [],
     bio: {
       fr: "2 ans d'expérience professionnelle au sein du cabinet.",
       en: "2 years of professional experience at the firm.",
@@ -632,8 +602,8 @@ const teamMembers: TeamMemberInput[] = [
         en: "Financial and accounting audit",
       },
     ],
-    industries: industriesPending,
-    languages: languagesPending,
+    industries: [],
+    languages: [],
     bio: {
       fr: "2 ans d'expérience professionnelle au sein du cabinet.",
       en: "2 years of professional experience at the firm.",
@@ -664,8 +634,8 @@ const teamMembers: TeamMemberInput[] = [
         en: "Financial and accounting audit",
       },
     ],
-    industries: industriesPending,
-    languages: languagesPending,
+    industries: [],
+    languages: [],
     bio: {
       fr: "1 an d'expérience professionnelle au sein du cabinet.",
       en: "1 year of professional experience at the firm.",
@@ -674,15 +644,8 @@ const teamMembers: TeamMemberInput[] = [
   },
 ];
 
-/**
- * Génération automatique de la photo.
- *
- * Exemple :
- * "konan-yannick"
- * devient :
- * "/assets/team/konan-yannick.jpg"
- */
+// Photos attendues dans public/assets/<id>.jpg.
 export const team: TeamMember[] = teamMembers.map((member) => ({
   ...member,
-  photo: `/assets/team/${member.id}.jpg`,
+  photo: `/assets/${member.id}.jpg`,
 }));
