@@ -1,14 +1,15 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-
 import {
   isLocale,
   getDictionary,
   type Locale,
 } from "@/lib/i18n";
-
 import { siteConfig } from "@/config/site";
-import { Section, SectionHeading } from "@/components/ui/Section";
+import {
+  Section,
+  SectionHeading,
+} from "@/components/ui/Section";
 import { ContactForm } from "@/components/sections/ContactForm";
 
 export async function generateMetadata({
@@ -46,7 +47,7 @@ export default async function ContactPage({
 
   const locale: Locale = rawLocale;
   const dict = await getDictionary(locale);
-
+  const isFr = locale === "fr";
   const query = await searchParams;
 
   const selectedService =
@@ -63,27 +64,23 @@ export default async function ContactPage({
   let initialMessage = "";
 
   if (selectedService) {
-    initialSubject =
-      locale === "fr"
-        ? `Demande concernant le service : ${selectedService}`
-        : `Request regarding service: ${selectedService}`;
+    initialSubject = isFr
+      ? `Demande concernant le service : ${selectedService}`
+      : `Request regarding service: ${selectedService}`;
 
-    initialMessage =
-      locale === "fr"
-        ? `Bonjour,\n\nJe souhaite obtenir davantage d'informations concernant le service « ${selectedService} ».\n\n`
-        : `Hello,\n\nI would like more information regarding the service “${selectedService}”.\n\n`;
+    initialMessage = isFr
+      ? `Bonjour,\n\nJe souhaite obtenir davantage d'informations concernant le service « ${selectedService} ».\n\n`
+      : `Hello,\n\nI would like more information regarding the service “${selectedService}”.\n\n`;
   }
 
   if (selectedSector) {
-    initialSubject =
-      locale === "fr"
-        ? `Demande concernant le secteur : ${selectedSector}`
-        : `Request regarding industry: ${selectedSector}`;
+    initialSubject = isFr
+      ? `Demande concernant le secteur : ${selectedSector}`
+      : `Request regarding industry: ${selectedSector}`;
 
-    initialMessage =
-      locale === "fr"
-        ? `Bonjour,\n\nJe souhaite échanger avec TATY & Associés concernant des besoins dans le secteur « ${selectedSector} ».\n\n`
-        : `Hello,\n\nI would like to discuss my needs in the “${selectedSector}” industry with TATY & Associés.\n\n`;
+    initialMessage = isFr
+      ? `Bonjour,\n\nJe souhaite échanger avec TATY & Associés concernant des besoins dans le secteur « ${selectedSector} ».\n\n`
+      : `Hello,\n\nI would like to discuss my needs in the “${selectedSector}” industry with TATY & Associés.\n\n`;
   }
 
   return (
@@ -118,10 +115,7 @@ export default async function ContactPage({
                 </p>
 
                 {office.addressLines.map((line, i) => (
-                  <p
-                    key={i}
-                    className="text-ink-muted"
-                  >
+                  <p key={i} className="text-ink-muted">
                     {line}
                   </p>
                 ))}
@@ -129,11 +123,24 @@ export default async function ContactPage({
             ))}
 
             <p className="text-sm text-ink-muted">
-              {siteConfig.contact.phone}
+              <a
+                href={`tel:${siteConfig.contact.phone.replace(
+                  /\s+/g,
+                  "",
+                )}`}
+                className="hover:underline"
+              >
+                {siteConfig.contact.phone}
+              </a>
             </p>
 
             <p className="text-sm text-ink-muted">
-              {siteConfig.contact.email}
+              <a
+                href={`mailto:${siteConfig.contact.email}`}
+                className="hover:underline"
+              >
+                {siteConfig.contact.email}
+              </a>
             </p>
 
             <p className="mt-2 text-sm text-ink-muted">
@@ -142,9 +149,51 @@ export default async function ContactPage({
             </p>
           </div>
 
-          <div className="flex h-64 items-center justify-center border border-dashed border-line bg-paper-muted text-sm text-ink-muted">
-            {dict.contact.mapPending}
-          </div>
+          {siteConfig.offices.map((office) => {
+            // La boîte postale ne sert pas à localiser le bureau.
+            const address = office.addressLines
+              .filter((line) => !/\bBP\b/i.test(line))
+              .join(", ");
+
+            const encodedAddress = encodeURIComponent(address);
+
+            const mapSrc =
+              office.mapEmbedUrl ||
+              `https://www.google.com/maps?q=${encodedAddress}&output=embed`;
+
+            const mapLink =
+              `https://www.google.com/maps/search/?api=1&query=${encodedAddress}`;
+
+            return (
+              <div key={office.id}>
+                <div className="h-64 overflow-hidden border border-line bg-paper-muted">
+                  <iframe
+                    src={mapSrc}
+                    title={
+                      isFr
+                        ? `Localisation — ${office.name}`
+                        : `Location — ${office.name}`
+                    }
+                    className="h-full w-full border-0"
+                    loading="lazy"
+                    referrerPolicy="no-referrer-when-downgrade"
+                    allowFullScreen
+                  />
+                </div>
+
+                <a
+                  href={mapLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-3 inline-block text-sm font-medium text-brand-accent hover:underline"
+                >
+                  {isFr
+                    ? "Ouvrir dans Google Maps ↗"
+                    : "Open in Google Maps ↗"}
+                </a>
+              </div>
+            );
+          })}
         </div>
       </div>
     </Section>
