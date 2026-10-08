@@ -1,31 +1,91 @@
+"use client";
+
+import { useState } from "react";
 import type { TeamMember } from "@/content/team";
-import { Locale, t } from "@/lib/i18n";
+import { type Locale, t } from "@/lib/i18n";
 import { StatusBadge } from "@/components/ui/StatusBadge";
-import generatedPhotos from "@/content/asset-photos.json";
 
-const assetPhotos: Record<string, string> = generatedPhotos;
+function MemberPortrait({
+  photo,
+  name,
+}: {
+  photo: string;
+  name: string;
+}) {
+  const [failed, setFailed] = useState(false);
 
-export function TeamCard({ member, locale }: { member: TeamMember; locale: Locale }) {
-  const photo = assetPhotos[member.id] ?? member.photo;
+  const initials = name
+    .trim()
+    .split(/\s+/)
+    .filter(Boolean)
+    .slice(0, 2)
+    .map((part) => Array.from(part)[0])
+    .join("")
+    .toLocaleUpperCase();
+
+  return (
+    <div className="relative flex aspect-[4/5] items-center justify-center overflow-hidden bg-paper-muted text-xs uppercase tracking-wide text-ink-muted">
+      <span
+        className="text-4xl font-medium text-brand-primary"
+        aria-hidden="true"
+      >
+        {initials}
+      </span>
+
+      {photo && !failed && (
+        // eslint-disable-next-line @next/next/no-img-element
+        <img
+          src={photo}
+          alt={name}
+          className="absolute inset-0 h-full w-full object-cover"
+          onError={(event) => {
+            event.currentTarget.style.display = "none";
+            setFailed(true);
+          }}
+        />
+      )}
+    </div>
+  );
+}
+
+export function TeamCard({
+  member,
+  locale,
+}: {
+  member: TeamMember;
+  locale: Locale;
+}) {
+  const name = t(locale, member.name);
+
   return (
     <div className="flex flex-col border border-line bg-paper">
-      <div className="flex aspect-[4/5] items-center justify-center bg-paper-muted text-xs uppercase tracking-wide text-ink-muted">
-        {photo ? (
-          // eslint-disable-next-line @next/next/no-img-element
-          <img src={photo} alt={t(locale, member.name)} className="h-full w-full object-cover" />
-        ) : (
-          <span>{locale === "fr" ? "Photo à venir" : "Photo pending"}</span>
-        )}
-      </div>
+      <MemberPortrait
+        key={member.photo}
+        photo={member.photo}
+        name={name}
+      />
+
       <div className="flex flex-1 flex-col gap-3 p-6">
         <div className="flex items-start justify-between gap-3">
           <div>
-            <h3 className="font-medium text-brand-primary">{t(locale, member.name)}</h3>
-            <p className="text-sm text-ink-muted">{t(locale, member.role)}</p>
+            <h3 className="font-medium text-brand-primary">
+              {name}
+            </h3>
+
+            <p className="text-sm text-ink-muted">
+              {t(locale, member.role)}
+            </p>
           </div>
-          <StatusBadge status={member.status} locale={locale} />
+
+          <StatusBadge
+            status={member.status}
+            locale={locale}
+          />
         </div>
-        <p className="text-sm text-ink-muted">{t(locale, member.bio)}</p>
+
+        <p className="text-sm text-ink-muted">
+          {t(locale, member.bio)}
+        </p>
       </div>
     </div>
   );
