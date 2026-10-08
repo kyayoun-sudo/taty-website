@@ -1,3 +1,5 @@
+import { readdirSync } from "node:fs";
+import path from "node:path";
 import type { LocalizedText } from "@/lib/i18n";
 import type { ContentStatus } from "@/lib/content-status";
 
@@ -10,9 +12,13 @@ export type InsightCategory =
   | "esg"
   | "finance"
   | "business-environment"
-  | "industry";
+  | "industry"
+  | "publication";
 
-export const insightCategoryLabels: Record<InsightCategory, LocalizedText> = {
+export const insightCategoryLabels: Record<
+  InsightCategory,
+  LocalizedText
+> = {
   audit: { fr: "Audit", en: "Audit" },
   accounting: { fr: "Comptabilité", en: "Accounting" },
   ohada: { fr: "OHADA", en: "OHADA" },
@@ -20,8 +26,18 @@ export const insightCategoryLabels: Record<InsightCategory, LocalizedText> = {
   tax: { fr: "Fiscalité", en: "Tax" },
   esg: { fr: "ESG", en: "ESG" },
   finance: { fr: "Finance", en: "Finance" },
-  "business-environment": { fr: "Environnement des affaires en Côte d'Ivoire", en: "Côte d'Ivoire business environment" },
-  industry: { fr: "Analyses sectorielles", en: "Industry insights" },
+  "business-environment": {
+    fr: "Environnement des affaires en Côte d'Ivoire",
+    en: "Côte d'Ivoire business environment",
+  },
+  industry: {
+    fr: "Analyses sectorielles",
+    en: "Industry insights",
+  },
+  publication: {
+    fr: "Publication",
+    en: "Publication",
+  },
 };
 
 export interface InsightArticle {
@@ -31,66 +47,76 @@ export interface InsightArticle {
   title: LocalizedText;
   excerpt: LocalizedText;
   body: LocalizedText;
-  publishedAt: string | null; // ISO date, null while unconfirmed
-  isPlaceholder: boolean; // true = demonstration content, never a real TATY publication
+  publishedAt: string | null;
+  isPlaceholder: boolean;
+  pdfUrl?: string;
 }
 
-/**
- * Placeholder articles ONLY, clearly labelled as draft demonstration
- * content in the UI. Replace with real, approved publications before
- * removing the "draft" status.
- */
-export const insights: InsightArticle[] = [
-  {
-    slug: "exemple-article-audit",
-    status: "draft",
-    category: "audit",
-    isPlaceholder: true,
-    publishedAt: null,
-    title: { fr: "[TITRE D'ARTICLE — EXEMPLE DE STRUCTURE]", en: "[ARTICLE TITLE — STRUCTURE EXAMPLE]" },
-    excerpt: {
-      fr: "Ceci est un article de démonstration illustrant la structure du système de publications. Il ne s'agit pas d'une publication réelle de TATY & Associés.",
-      en: "This is a demonstration article illustrating the publications system structure. It is not a real TATY & Associés publication.",
-    },
-    body: {
-      fr: "[CONTENU DE L'ARTICLE À FOURNIR PAR TATY & ASSOCIÉS]",
-      en: "[ARTICLE CONTENT TO BE PROVIDED BY TATY & ASSOCIÉS]",
-    },
-  },
-  {
-    slug: "exemple-article-ohada",
-    status: "draft",
-    category: "ohada",
-    isPlaceholder: true,
-    publishedAt: null,
-    title: { fr: "[TITRE D'ARTICLE — OHADA — EXEMPLE]", en: "[ARTICLE TITLE — OHADA — EXAMPLE]" },
-    excerpt: {
-      fr: "Article de démonstration pour la catégorie OHADA, en attente de contenu validé par le cabinet.",
-      en: "Demonstration article for the OHADA category, pending content validated by the firm.",
-    },
-    body: {
-      fr: "[CONTENU DE L'ARTICLE À FOURNIR PAR TATY & ASSOCIÉS]",
-      en: "[ARTICLE CONTENT TO BE PROVIDED BY TATY & ASSOCIÉS]",
-    },
-  },
-  {
-    slug: "exemple-article-ifrs",
-    status: "draft",
-    category: "ifrs",
-    isPlaceholder: true,
-    publishedAt: null,
-    title: { fr: "[TITRE D'ARTICLE — IFRS — EXEMPLE]", en: "[ARTICLE TITLE — IFRS — EXAMPLE]" },
-    excerpt: {
-      fr: "Article de démonstration pour la catégorie IFRS, en attente de contenu validé par le cabinet.",
-      en: "Demonstration article for the IFRS category, pending content validated by the firm.",
-    },
-    body: {
-      fr: "[CONTENU DE L'ARTICLE À FOURNIR PAR TATY & ASSOCIÉS]",
-      en: "[ARTICLE CONTENT TO BE PROVIDED BY TATY & ASSOCIÉS]",
-    },
-  },
-];
+const publicationsDirectory = path.join(
+  process.cwd(),
+  "public",
+  "assets",
+  "publications",
+);
+
+function loadPublications(): InsightArticle[] {
+  let entries: ReturnType<typeof readdirSync>;
+
+  try {
+    entries = readdirSync(publicationsDirectory);
+  } catch (error) {
+    if ((error as NodeJS.ErrnoException).code === "ENOENT") {
+      return [];
+    }
+
+    throw error;
+  }
+
+  return entries
+    .filter((filename) => /\.pdf$/i.test(filename))
+    .filter((filename) =>
+      readdirSync(publicationsDirectory, {
+        withFileTypes: true,
+      }).some(
+        (entry) =>
+          entry.name === filename && entry.isFile(),
+      ),
+    )
+    .sort((a, b) => a.localeCompare(b, "fr"))
+    .map((filename) => {
+      const title = filename
+        .replace(/\.pdf$/i, "")
+        .replace(/[_-]+/g, " ")
+        .trim();
+
+      // L'encodage hexadécimal évite les collisions entre fichiers.
+      const slug = `pdf-${Buffer.from(filename, "utf8").toString("hex")}`;
+
+      return {
+        slug,
+        status: "confirmed",
+        category: "publication",
+        title: {
+          fr: title,
+          en: title,
+        },
+        excerpt: {
+          fr: "Consulter la publication au format PDF.",
+          en: "Read the publication in PDF format.",
+        },
+        body: {
+          fr: "",
+          en: "",
+        },
+        publishedAt: null,
+        isPlaceholder: false,
+        pdfUrl: `/assets/publications/${encodeURIComponent(filename)}`,
+      };
+    });
+}
+
+export const insights: InsightArticle[] = loadPublications();
 
 export function getInsightBySlug(slug: string) {
-  return insights.find((a) => a.slug === slug);
+  return insights.find((article) => article.slug === slug);
 }
