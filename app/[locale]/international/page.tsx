@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import {
   isLocale,
   getDictionary,
+  localizedHref,
   t,
   type Locale,
 } from "@/lib/i18n";
@@ -53,6 +54,7 @@ export default async function InternationalPage({
   const locale: Locale = rawLocale;
   const dict = await getDictionary(locale);
   const isFr = locale === "fr";
+  const contactHref = localizedHref(locale, "/contact");
 
   const intro = isFr
     ? "TATY & Associés accompagne les groupes internationaux, investisseurs étrangers et équipes d'audit de groupe présents ou souhaitant s'implanter en Côte d'Ivoire et dans l'espace OHADA."
@@ -94,11 +96,13 @@ export default async function InternationalPage({
 
             <ul className="grid gap-3 sm:grid-cols-2">
               {internationalCapabilities.map((item, i) => (
-                <li
-                  key={i}
-                  className="border border-line bg-paper p-4 text-sm text-ink"
-                >
-                  {t(locale, item)}
+                <li key={i}>
+                  <a
+                    href={contactHref}
+                    className="block h-full border border-line bg-paper p-4 text-sm text-ink transition-colors hover:border-brand-accent focus-visible:outline focus-visible:outline-2 focus-visible:outline-brand-accent"
+                  >
+                    {t(locale, item)}
+                  </a>
                 </li>
               ))}
             </ul>
@@ -165,6 +169,7 @@ export default async function InternationalPage({
         title={dict.home.contactTitle}
         subtitle={dict.home.contactSubtitle}
         ctaLabel={dict.nav.contactCta}
+        ctaHref="/contact"
       />
     </>
   );
