@@ -57,12 +57,10 @@ export const siteConfig = {
       mapQuery: "Cocody Riviera, Abidjan, Côte d'Ivoire",
     },
   ],
-
-  workingHours: {
-    fr: "[HORAIRES D'OUVERTURE À CONFIRMER]",
-    en: "[OFFICE HOURS TO BE CONFIRMED]",
-  },
-
+workingHours: {
+  fr: "8 h à 18 h",
+  en: "8:00 AM to 6:00 PM",
+},
   // ---- Social -----------------------------------------------------------
   // Leave a value empty ("") to hide that icon in the footer/header.
   social: {
