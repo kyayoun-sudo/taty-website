@@ -8,18 +8,13 @@ export interface ServiceLine {
 
 export interface ServiceCategory {
   slug: string;
-  icon: string; // simple key used by ServiceIcon component
+  icon: string;
   title: LocalizedText;
   shortDescription: LocalizedText;
   description: LocalizedText;
   lines: ServiceLine[];
   status: ContentStatus;
 }
-
-const toBeConfirmed: LocalizedText = {
-  fr: "[À CONFIRMER PAR TATY & ASSOCIÉS]",
-  en: "[TO BE CONFIRMED BY TATY & ASSOCIÉS]",
-};
 
 export const services: ServiceCategory[] = [
   {
@@ -38,10 +33,7 @@ export const services: ServiceCategory[] = [
     lines: [
       {
         status: "confirmed",
-        title: {
-          fr: "Commissariat aux comptes",
-          en: "Statutory audit",
-        },
+        title: { fr: "Commissariat aux comptes", en: "Statutory audit" },
       },
       {
         status: "confirmed",
@@ -250,43 +242,60 @@ export const services: ServiceCategory[] = [
   {
     slug: "risque-controle-conformite",
     icon: "risk",
-    status: "draft",
+    status: "confirmed",
     title: {
       fr: "Risque, Contrôle Interne & Conformité",
       en: "Risk, Internal Control & Compliance",
     },
     shortDescription: {
-      fr: "Revue des dispositifs de contrôle interne, des processus et des risques.",
-      en: "Internal control, process and risk reviews, and compliance support.",
+      fr: "Évaluation des risques, revue des dispositifs de contrôle interne, des processus et de la conformité.",
+      en: "Risk assessment, internal control, process reviews and compliance support.",
     },
-    description: toBeConfirmed,
+    description: {
+      fr: "TATY & Associés accompagne les organisations dans l'identification, l'évaluation et la maîtrise de leurs risques. Le cabinet intervient dans la revue des dispositifs de contrôle interne, l'analyse des processus, l'identification des faiblesses opérationnelles et l'accompagnement à la mise en place de dispositifs de conformité adaptés.",
+      en: "TATY & Associés supports organisations in identifying, assessing and managing their risks. The firm reviews internal control frameworks and business processes, identifies operational weaknesses and supports the implementation of appropriate compliance arrangements.",
+    },
     lines: [
       {
-        status: "draft",
+        status: "confirmed",
         title: {
           fr: "Revue du contrôle interne",
           en: "Internal control reviews",
         },
       },
       {
-        status: "draft",
+        status: "confirmed",
         title: {
-          fr: "Revue de processus",
-          en: "Process reviews",
+          fr: "Revue et optimisation des processus",
+          en: "Process review and optimisation",
         },
       },
       {
-        status: "draft",
+        status: "confirmed",
         title: {
-          fr: "Évaluation des risques",
-          en: "Risk assessment",
+          fr: "Évaluation et cartographie des risques",
+          en: "Risk assessment and mapping",
         },
       },
       {
-        status: "draft",
+        status: "confirmed",
         title: {
           fr: "Accompagnement conformité",
           en: "Compliance support",
+        },
+      },
+      {
+        status: "confirmed",
+        title: {
+          fr: "Diagnostic des dispositifs de contrôle",
+          en: "Control framework assessment",
+        },
+      },
+      {
+        status: "confirmed",
+        title: {
+          fr: "Recommandations et plans d'amélioration",
+          en: "Recommendations and improvement plans",
         },
       },
     ],
@@ -398,50 +407,60 @@ export const services: ServiceCategory[] = [
   {
     slug: "technologie-transformation-finance",
     icon: "technology",
-    status: "draft",
+    status: "confirmed",
     title: {
       fr: "Technologie & Transformation Finance",
       en: "Technology & Finance Transformation",
     },
     shortDescription: {
-      fr: "Optimisation des processus finance, data analytics et accompagnement ERP.",
-      en: "Finance process optimisation, data analytics and ERP support.",
+      fr: "Transformation de la fonction finance, data analytics, ERP, SAP et intégration de l'intelligence artificielle.",
+      en: "Finance transformation, data analytics, ERP, SAP and artificial intelligence integration.",
     },
-    description: toBeConfirmed,
+    description: {
+      fr: "TATY & Associés accompagne les organisations dans la transformation et la modernisation de leurs fonctions finance, comptabilité et audit. Le cabinet intervient sur l'optimisation des processus, l'exploitation des données, l'accompagnement ERP et SAP ainsi que l'intégration de solutions d'intelligence artificielle et d'automatisation.",
+      en: "TATY & Associés supports organisations in transforming and modernising their finance, accounting and audit functions. The firm provides support in process optimisation, data analytics, ERP and SAP projects, as well as the integration of artificial intelligence and automation solutions.",
+    },
     lines: [
       {
-        status: "draft",
+        status: "confirmed",
         title: {
-          fr: "Optimisation des processus finance",
-          en: "Finance process optimisation",
+          fr: "Optimisation et automatisation des processus finance",
+          en: "Finance process optimisation and automation",
         },
       },
       {
-        status: "draft",
+        status: "confirmed",
         title: {
           fr: "Data analytics",
           en: "Data analytics",
         },
       },
       {
-        status: "draft",
+        status: "confirmed",
         title: {
           fr: "Accompagnement ERP",
           en: "ERP support",
         },
       },
       {
-        status: "draft",
+        status: "confirmed",
         title: {
-          fr: "Conseil SAP",
-          en: "SAP-related advisory",
+          fr: "Conseil et accompagnement SAP",
+          en: "SAP advisory and support",
         },
       },
       {
-        status: "draft",
+        status: "confirmed",
         title: {
-          fr: "Intégration de l'IA en finance et audit",
-          en: "AI implementation for finance and audit",
+          fr: "Intégration de l'IA en finance, comptabilité et audit",
+          en: "AI implementation for finance, accounting and audit",
+        },
+      },
+      {
+        status: "confirmed",
+        title: {
+          fr: "Digitalisation de la fonction finance",
+          en: "Finance function digitalisation",
         },
       },
     ],
@@ -456,12 +475,12 @@ export const services: ServiceCategory[] = [
       en: "Tax & Business Advisory",
     },
     shortDescription: {
-      fr: "Le conseil financier, juridique, fiscal et social figure parmi les quatre grands domaines d'intervention du cabinet ; le détail des prestations reste à préciser.",
-      en: "Financial, legal, tax and employment-law advisory is one of the firm's four core practice areas; the detailed scope of services is still to be confirmed.",
+      fr: "Conseil financier, juridique, fiscal et social pour accompagner les entreprises dans leurs opérations et leurs obligations.",
+      en: "Financial, legal, tax and employment advisory supporting businesses in their operations and obligations.",
     },
     description: {
-      fr: "Le conseil financier, juridique, fiscal et social fait partie des quatre grands domaines d'intervention du cabinet TATY & Associés, aux côtés de l'audit, de l'expertise comptable et du management/conseil en organisation. Le détail précis des prestations fiscales proposées reste à confirmer par le cabinet.",
-      en: "Financial, legal, tax and employment-law advisory is one of TATY & Associés' four core practice areas, alongside audit, chartered accountancy and management/organisational advisory. The precise scope of the tax services on offer is still to be confirmed by the firm.",
+      fr: "Le conseil financier, juridique, fiscal et social fait partie des domaines d'intervention de TATY & Associés. Le cabinet accompagne les entreprises et organisations sur les problématiques liées à leur gestion financière, leurs obligations fiscales et sociales ainsi qu'aux enjeux juridiques associés à leurs activités.",
+      en: "Financial, legal, tax and employment advisory forms part of TATY & Associés' areas of expertise. The firm supports companies and organisations with financial management, tax and employment obligations and legal matters related to their activities.",
     },
     lines: [],
   },
