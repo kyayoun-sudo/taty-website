@@ -1,87 +1,82 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { notFound } from "next/navigation";
-
-import {
-  isLocale,
-  getDictionary,
-  localizedHref,
-  t,
-  type Locale,
-} from "@/lib/i18n";
-
-import { getVisible } from "@/lib/content-status";
-import { industries } from "@/content/industries";
+import Link from "next/link";
+import { isLocale, getDictionary, localizedHref, t, locales, type Locale } from "@/lib/i18n";
+import { isVisible } from "@/lib/content-status";
+import { services, getServiceBySlug } from "@/content/services";
 import { Section, SectionHeading } from "@/components/ui/Section";
+import { StatusBadge } from "@/components/ui/StatusBadge";
+import { CTABanner } from "@/components/sections/CTABanner";
+
+export function generateStaticParams() {
+  return locales.flatMap((locale) => services.map((service) => ({ locale, slug: service.slug })));
+}
 
 export async function generateMetadata({
   params,
 }: {
-  params: Promise<{ locale: string }>;
+  params: Promise<{ locale: string; slug: string }>;
 }): Promise<Metadata> {
-  const { locale } = await params;
-  const isFr = locale === "fr";
-
+  const { locale: rawLocale, slug } = await params;
+  const locale: Locale = isLocale(rawLocale) ? rawLocale : "fr";
+  const service = getServiceBySlug(slug);
+  if (!service) return {};
   return {
-    title: isFr ? "Secteurs d'activité" : "Industries",
-    description: isFr
-      ? "Les secteurs d'activité couverts par TATY & Associés en Côte d'Ivoire."
-      : "Industries covered by TATY & Associés in Côte d'Ivoire.",
-    alternates: {
-      canonical: isFr ? "/secteurs" : "/en/secteurs",
-    },
+    title: t(locale, service.title),
+    description: t(locale, service.shortDescription),
   };
 }
 
-export default async function IndustriesPage({
+export default async function ServiceDetailPage({
   params,
 }: {
-  params: Promise<{ locale: string }>;
+  params: Promise<{ locale: string; slug: string }>;
 }) {
-  const { locale: rawLocale } = await params;
-
+  const { locale: rawLocale, slug } = await params;
   if (!isLocale(rawLocale)) notFound();
-
   const locale: Locale = rawLocale;
   const dict = await getDictionary(locale);
-  const visibleIndustries = getVisible(industries);
+  const service = getServiceBySlug(slug);
+  if (!service || !isVisible(service)) notFound();
 
   return (
-    <Section>
-      <SectionHeading
-        eyebrow={dict.industries.eyebrow}
-        title={dict.industries.title}
-        subtitle={dict.industries.intro}
+    <>
+      <Section>
+        <Link href={localizedHref(locale, "/services")} className="mb-6 inline-block text-sm text-brand-accent hover:underline">
+          ← {dict.common.backToOverview}
+        </Link>
+        <div className="mb-4 flex items-center gap-4">
+          <StatusBadge status={service.status} locale={locale} />
+        </div>
+        <SectionHeading eyebrow={dict.services.eyebrow} title={t(locale, service.title)} subtitle={t(locale, service.shortDescription)} />
+
+        <div className="mb-10">
+          <p className="text-sm text-ink-muted">{dict.services.statusNote}</p>
+        </div>
+
+        {service.lines.length > 0 && (
+          <div>
+            <h2 className="mb-4 text-sm font-semibold uppercase tracking-[0.14em] text-brand-primary">
+              {dict.services.possibleScope}
+            </h2>
+            <ul className="grid gap-3 sm:grid-cols-2">
+              {service.lines.map((line, i) => (
+                <li key={i} className="flex items-start gap-3 border border-line bg-paper p-4 text-sm text-ink">
+                  <span className="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-brand-accent" />
+                  {t(locale, line.title)}
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
+      </Section>
+
+      <CTABanner
+        locale={locale}
+        title={dict.home.contactTitle}
+        subtitle={dict.home.contactSubtitle}
+        ctaLabel={dict.nav.contactCta}
       />
-
-      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-        {visibleIndustries.map((industry) => {
-          const industryName = t(locale, industry.title);
-
-          return (
-            <Link
-              key={industry.slug}
-              href={localizedHref(
-                locale,
-                `/contact?sector=${encodeURIComponent(industryName)}`
-              )}
-              className="group flex flex-col gap-4 border border-line bg-paper p-5 transition-colors hover:border-brand-accent"
-            >
-              <div className="flex items-start justify-between gap-3">
-                <span className="font-medium text-brand-primary group-hover:text-brand-accent">
-                  {industryName}
-                </span>
-              </div>
-
-              <span className="text-sm font-medium text-brand-accent">
-                {locale === "fr"
-                  ? "Nous contacter pour ce secteur →"
-                  : "Contact us about this industry →"}
-              </span>
-            </Link>
-          );
-        })}
-      </div>
-    </Section>
+    </>
   );
 }

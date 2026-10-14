@@ -46,45 +46,6 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
   const visibleInsights = getVisible(insights).slice(0, 3);
   const whoWeAre = firmSections.find((s) => s.id === "who-we-are");
 
-  const whyItems =
-    locale === "fr"
-      ? [
-          {
-            title: dict.firm.independence,
-            text: "Des travaux conduits avec objectivité, intégrité et indépendance de jugement.",
-          },
-          {
-            title: dict.firm.quality,
-            text: "Une approche structurée, documentée et soumise à des exigences élevées de qualité.",
-          },
-          {
-            title: dict.firm.ethics,
-            text: "Une culture professionnelle fondée sur l'intégrité, la confidentialité et la responsabilité.",
-          },
-          {
-            title: dict.firm.standards,
-            text: "Des missions réalisées dans le respect des référentiels comptables, d'audit et professionnels applicables.",
-          },
-        ]
-      : [
-          {
-            title: dict.firm.independence,
-            text: "Work performed with objectivity, integrity and independence of judgement.",
-          },
-          {
-            title: dict.firm.quality,
-            text: "A structured and documented approach supported by high quality standards.",
-          },
-          {
-            title: dict.firm.ethics,
-            text: "A professional culture built on integrity, confidentiality and accountability.",
-          },
-          {
-            title: dict.firm.standards,
-            text: "Engagements performed in accordance with applicable accounting, auditing and professional frameworks.",
-          },
-        ];
-
   return (
     <>
       <Hero locale={locale} dict={dict} />
@@ -128,10 +89,15 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
       <Section muted>
         <SectionHeading title={dict.home.whyTitle} />
         <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
-          {whyItems.map((item) => (
-            <div key={item.title} className="border-t-2 border-brand-accent pt-4">
-              <h3 className="text-base font-medium text-brand-primary">{item.title}</h3>
-              <p className="mt-2 text-sm text-ink-muted">{item.text}</p>
+          {[
+            dict.firm.independence,
+            dict.firm.quality,
+            dict.firm.ethics,
+            dict.firm.standards,
+          ].map((label) => (
+            <div key={label} className="border-t-2 border-brand-accent pt-4">
+              <h3 className="text-base font-medium text-brand-primary">{label}</h3>
+              <p className="mt-2 text-sm text-ink-muted">{t(locale, firmSections.find((section) => t(locale, section.title) === label)?.body ?? { fr: "Rigueur et écoute au service de vos enjeux.", en: "Rigour and attentive support for your priorities." })}</p>
             </div>
           ))}
         </div>
