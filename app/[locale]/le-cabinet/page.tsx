@@ -26,10 +26,14 @@ export default async function FirmPage({ params }: { params: Promise<{ locale: s
   if (!isLocale(rawLocale)) notFound();
   const locale: Locale = rawLocale;
   const dict = await getDictionary(locale);
+  const firmTagline =
+    locale === "fr"
+      ? "TATY & ASSOCIÉS — L’exigence de l’audit, la force du conseil, la confiance au service de votre performance."
+      : "TATY & ASSOCIÉS — The rigour of audit, the strength of advisory, and trust in service of your performance.";
 
   return (
     <Section>
-      <SectionHeading eyebrow={dict.firm.eyebrow} title={dict.firm.title} />
+      <SectionHeading eyebrow={dict.firm.eyebrow} title={dict.firm.title} subtitle={firmTagline} />
       <div className="grid gap-12 lg:grid-cols-2">
         {firmSections.map((section) => (
           <div key={section.id} className="border-t border-line pt-6">
