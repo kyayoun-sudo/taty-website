@@ -53,6 +53,9 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
       <Section>
         <SectionHeading title={dict.home.introTitle} />
         <p className="max-w-3xl text-lg text-ink-muted">{whoWeAre ? t(locale, whoWeAre.body) : ""}</p>
+        <p className="mt-6 text-sm font-semibold uppercase tracking-[0.16em] text-brand-accent">
+          {dict.home.signature}
+        </p>
         <div className="mt-8">
           <Button href={localizedHref(locale, "/le-cabinet")} variant="secondary">
             {dict.common.learnMore}
