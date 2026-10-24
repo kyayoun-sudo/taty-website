@@ -3,7 +3,7 @@ import { notFound } from "next/navigation";
 import { isLocale, getDictionary, t, type Locale } from "@/lib/i18n";
 import { careerTracks } from "@/content/careers";
 import { Section, SectionHeading } from "@/components/ui/Section";
-import { PlaceholderNotice } from "@/components/ui/PlaceholderNotice";
+import { CareerApplicationForm } from "@/components/sections/CareerApplicationForm";
 
 export async function generateMetadata({
   params,
@@ -42,55 +42,8 @@ export default async function CareersPage({ params }: { params: Promise<{ locale
 
       <div className="max-w-2xl">
         <h2 className="mb-4 text-xl font-medium text-brand-primary">{dict.careers.applicationTitle}</h2>
-        <div className="mb-6">
-          <PlaceholderNotice>{dict.careers.formCv}</PlaceholderNotice>
-        </div>
-        <form className="flex flex-col gap-5 border border-line bg-paper p-8">
-          <div className="grid gap-5 sm:grid-cols-2">
-            <TextField label={dict.careers.formName} name="name" required />
-            <TextField label={dict.careers.formEmail} name="email" type="email" required />
-            <TextField label={dict.careers.formPhone} name="phone" type="tel" />
-            <TextField label={dict.careers.formPosition} name="position" />
-          </div>
-          <div>
-            <label className="mb-1.5 block text-sm font-medium text-ink">{dict.careers.formMessage}</label>
-            <textarea rows={5} name="message" className="w-full border border-line bg-paper px-4 py-2.5 text-sm outline-none focus:border-brand-accent" />
-          </div>
-          <button
-            type="submit"
-            className="mt-2 inline-flex w-fit items-center justify-center border border-brand-primary bg-brand-primary px-6 py-3 text-sm font-medium text-white hover:bg-brand-primary-dark"
-          >
-            {dict.careers.submit}
-          </button>
-        </form>
+        <CareerApplicationForm dict={dict} locale={locale} />
       </div>
     </Section>
-  );
-}
-
-function TextField({
-  label,
-  name,
-  type = "text",
-  required = false,
-}: {
-  label: string;
-  name: string;
-  type?: string;
-  required?: boolean;
-}) {
-  return (
-    <div>
-      <label className="mb-1.5 block text-sm font-medium text-ink" htmlFor={name}>
-        {label}
-      </label>
-      <input
-        id={name}
-        name={name}
-        type={type}
-        required={required}
-        className="w-full border border-line bg-paper px-4 py-2.5 text-sm outline-none focus:border-brand-accent"
-      />
-    </div>
   );
 }

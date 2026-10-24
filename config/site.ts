@@ -18,8 +18,8 @@ export const siteConfig = {
   legalName: "TATY & ASSOCIÉS SARL",
   shortName: "T&A",
   tagline: {
-    fr: "[SIGNATURE / TAGLINE OFFICIELLE À FOURNIR]",
-    en: "[OFFICIAL TAGLINE TO BE PROVIDED]",
+    fr: "Sécuriser. Conseiller. Transformer.",
+    en: "Secure. Advise. Transform.",
   },
   foundingYear: 2015 as number | null,
 
