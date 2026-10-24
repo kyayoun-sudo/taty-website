@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import { isLocale, getDictionary, localizedHref, t, type Locale } from "@/lib/i18n";
 import { getVisible } from "@/lib/content-status";
 import { services } from "@/content/services";
@@ -117,7 +118,17 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
               {dict.home.internationalCta}
             </Button>
           </div>
-          <div className="h-64 border border-line bg-paper-muted lg:h-80" aria-hidden />
+          <div className="relative h-64 overflow-hidden border border-line bg-paper-muted lg:h-80">
+            <Image
+              src="/images/international/abidjan-global-connections.png"
+              alt={locale === "fr"
+                ? "Illustration d’Abidjan et de ses connexions avec les marchés internationaux"
+                : "Illustration of Abidjan and its connections to international markets"}
+              fill
+              sizes="(min-width: 1280px) 600px, (min-width: 1024px) 50vw, 100vw"
+              className="object-cover"
+            />
+          </div>
         </div>
       </Section>
 
