@@ -107,7 +107,7 @@
   "careers": {
     "title": "Carrières",
     "eyebrow": "Rejoindre TATY & Associés",
-    "intro": "[TEXTE DE PRÉSENTATION RH À FOURNIR PAR TATY & ASSOCIÉS]",
+    "intro": "Rejoignez un cabinet où la rigueur, l’intégrité et l’esprit d’équipe donnent du sens à chaque mission. Que vous soyez étudiant, jeune diplômé ou professionnel expérimenté, faites-nous découvrir votre parcours et votre projet. Les candidatures spontanées sont examinées selon les besoins du cabinet.",
     "internships": "Stages",
     "graduate": "Jeunes diplômés",
     "experienced": "Professionnels expérimentés",
@@ -117,8 +117,8 @@
     "formPhone": "Téléphone",
     "formPosition": "Poste souhaité",
     "formMessage": "Message",
-    "formCv": "CV (à joindre par email pour cette première version du site)",
-    "submit": "Envoyer ma candidature"
+    "formCv": "Complétez ce formulaire pour préparer un email à info@taty.info. Joignez votre CV et, si vous le souhaitez, une lettre de motivation avant de l’envoyer depuis votre messagerie.",
+    "submit": "Préparer ma candidature par email"
   },
   "contact": {
     "title": "Contact",

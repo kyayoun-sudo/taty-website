@@ -107,7 +107,7 @@
   "careers": {
     "title": "Careers",
     "eyebrow": "Join TATY & Associés",
-    "intro": "[HR INTRODUCTION TEXT TO BE PROVIDED BY TATY & ASSOCIÉS]",
+    "intro": "Join a firm where rigour, integrity and teamwork give purpose to every engagement. Whether you are a student, a recent graduate or an experienced professional, tell us about your background and career goals. Unsolicited applications are reviewed according to the firm’s needs.",
     "internships": "Internships",
     "graduate": "Graduate opportunities",
     "experienced": "Experienced professionals",
@@ -117,8 +117,8 @@
     "formPhone": "Phone",
     "formPosition": "Desired position",
     "formMessage": "Message",
-    "formCv": "CV (please attach by email for this first version of the site)",
-    "submit": "Submit application"
+    "formCv": "Complete this form to prepare an email to info@taty.info. Attach your CV and, if you wish, a cover letter before sending it from your email application.",
+    "submit": "Prepare my application email"
   },
   "contact": {
     "title": "Contact",
