@@ -8,8 +8,6 @@ export interface FirmSection {
   body: LocalizedText;
 }
 
-const pending = (fr: string, en: string): LocalizedText => ({ fr, en });
-
 export const firmSections: FirmSection[] = [
   {
     id: "who-we-are",
@@ -31,21 +29,30 @@ export const firmSections: FirmSection[] = [
   },
   {
     id: "mission",
-    status: "draft",
+    status: "confirmed",
     title: { fr: "Notre mission", en: "Our mission" },
-    body: pending("[ÉNONCÉ DE MISSION À FOURNIR]", "[MISSION STATEMENT TO BE PROVIDED]"),
+    body: {
+      fr: "Accompagner les entreprises et les organisations dans la fiabilisation de leur information financière, la maîtrise de leurs risques et l’amélioration de leur performance, grâce à un audit rigoureux et à des conseils adaptés à leurs enjeux.",
+      en: "Support businesses and organisations in strengthening the reliability of their financial information, managing risks and improving performance through rigorous audit work and advice tailored to their needs.",
+    },
   },
   {
     id: "vision",
-    status: "draft",
+    status: "confirmed",
     title: { fr: "Notre vision", en: "Our vision" },
-    body: pending("[ÉNONCÉ DE VISION À FOURNIR]", "[VISION STATEMENT TO BE PROVIDED]"),
+    body: {
+      fr: "Être un partenaire de référence en audit, expertise comptable et conseil en Côte d’Ivoire et dans l’espace OHADA, reconnu pour la qualité de ses interventions, sa proximité avec ses clients et son ouverture internationale.",
+      en: "Be a trusted partner in audit, accounting and advisory in Côte d’Ivoire and the OHADA region, recognised for the quality of our work, close client relationships and international outlook.",
+    },
   },
   {
     id: "values",
-    status: "draft",
+    status: "confirmed",
     title: { fr: "Nos valeurs", en: "Our values" },
-    body: pending("[VALEURS DU CABINET À FOURNIR]", "[FIRM VALUES TO BE PROVIDED]"),
+    body: {
+      fr: "L’intégrité, l’indépendance et la confidentialité fondent notre pratique. La rigueur, l’écoute et le sens des responsabilités guident nos équipes pour construire des relations de confiance durables avec nos clients et partenaires.",
+      en: "Integrity, independence and confidentiality underpin our practice. Rigour, attentive listening and accountability guide our teams in building lasting relationships of trust with clients and partners.",
+    },
   },
   {
     id: "independence",
