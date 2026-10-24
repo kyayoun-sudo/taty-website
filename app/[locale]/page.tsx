@@ -92,17 +92,16 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
       <Section muted>
         <SectionHeading title={dict.home.whyTitle} />
         <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
-          {[
-            dict.firm.independence,
-            dict.firm.quality,
-            dict.firm.ethics,
-            dict.firm.standards,
-          ].map((label) => (
-            <div key={label} className="border-t-2 border-brand-accent pt-4">
-              <h3 className="text-base font-medium text-brand-primary">{label}</h3>
-              <p className="mt-2 text-sm text-ink-muted">{dict.industries.experienceToBeConfirmed}</p>
-            </div>
-          ))}
+          {["independence", "quality", "ethics", "standards"].map((id) => {
+            const commitment = firmSections.find((section) => section.id === id);
+            if (!commitment) return null;
+            return (
+              <div key={id} className="border-t-2 border-brand-accent pt-4">
+                <h3 className="text-base font-medium text-brand-primary">{t(locale, commitment.title)}</h3>
+                <p className="mt-2 text-sm text-ink-muted">{t(locale, commitment.body)}</p>
+              </div>
+            );
+          })}
         </div>
       </Section>
 

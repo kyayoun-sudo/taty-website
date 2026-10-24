@@ -177,13 +177,13 @@ const teamMembers: TeamMemberInput[] = [
       en: "Paul Yann Cédric Komenan",
     },
     role: {
-      fr: "Consultant-associé, Expert-comptable (ACCA)",
-      en: "Associate Consultant, Chartered Certified Accountant (ACCA)",
+      fr: "Consultant-associé, ACCA member",
+      en: "Associate Consultant, ACCA member",
     },
     qualifications: [
       {
-        fr: "Expert-comptable ACCA (Association of Chartered Certified Accountants), qualification reconnue dans 182 pays (2021–2025)",
-        en: "ACCA (Association of Chartered Certified Accountants) Chartered Certified Accountant, internationally recognised in 182 countries (2021–2025)",
+        fr: "ACCA member (Association of Chartered Certified Accountants)",
+        en: "ACCA member (Association of Chartered Certified Accountants)",
       },
       {
         fr: "MSc in Professional Accountancy, University of London (2025 – en cours)",
@@ -253,8 +253,8 @@ const teamMembers: TeamMemberInput[] = [
       },
     ],
     bio: {
-      fr: "Expert-comptable ACCA et économiste comptant plus de 10 ans d'expérience internationale en finance, reporting et audit entre l'Europe, l'Asie et l'Afrique, avec la maîtrise de plusieurs référentiels comptables (IFRS, US GAAP, SYSCOHADA, Plan Comptable Français). Avant de rejoindre TATY & Associés en 2026 en tant que Consultant-associé (Audit, Transformation & Développement International), il a occupé des postes de comptable senior et de contrôleur comptable au sein de groupes internationaux tels que Roche, Baker Hughes, ExxonMobil et Tata Consultancy Services. Au sein du cabinet, il pilote des missions d'audit, la standardisation des méthodologies et de la documentation, ainsi que la stratégie de développement international du cabinet, incluant le projet TATY France et la structuration d'un réseau international de cabinets partenaires. Il est également l'auteur de plusieurs publications sur les normes comptables et l'inclusion financière en Afrique (SSRN, Academia.edu).",
-      en: "An ACCA-qualified chartered accountant and economist with more than 10 years of international experience in finance, reporting and audit across Europe, Asia and Africa, with command of several accounting frameworks (IFRS, US GAAP, SYSCOHADA, French GAAP). Before joining TATY & Associés in 2026 as Associate Consultant (Audit, Transformation & International Business Development), he held senior accountant and financial controller roles at international groups including Roche, Baker Hughes, ExxonMobil and Tata Consultancy Services. At the firm, he leads audit engagements, the standardisation of methodology and documentation, and the firm's international development strategy, including the TATY France project and the structuring of an international network of partner firms. He is also the author of several publications on accounting standards and financial inclusion in Africa (SSRN, Academia.edu).",
+      fr: "ACCA member et économiste comptant plus de 10 ans d'expérience internationale en finance, reporting et audit entre l'Europe, l'Asie et l'Afrique, avec la maîtrise de plusieurs référentiels comptables (IFRS, US GAAP, SYSCOHADA, Plan Comptable Français). Avant de rejoindre TATY & Associés en 2026 en tant que Consultant-associé (Audit, Transformation & Développement International), il a occupé des postes de comptable senior et de contrôleur comptable au sein de groupes internationaux tels que Roche, Baker Hughes, ExxonMobil et Tata Consultancy Services. Au sein du cabinet, il pilote des missions d'audit, la standardisation des méthodologies et de la documentation, ainsi que la stratégie de développement international du cabinet, incluant le projet TATY France et la structuration d'un réseau international de cabinets partenaires. Il est également l'auteur de plusieurs publications sur les normes comptables et l'inclusion financière en Afrique (SSRN, Academia.edu).",
+      en: "An ACCA member and economist with more than 10 years of international experience in finance, reporting and audit across Europe, Asia and Africa, with command of several accounting frameworks (IFRS, US GAAP, SYSCOHADA, French GAAP). Before joining TATY & Associés in 2026 as Associate Consultant (Audit, Transformation & International Business Development), he held senior accountant and financial controller roles at international groups including Roche, Baker Hughes, ExxonMobil and Tata Consultancy Services. At the firm, he leads audit engagements, the standardisation of methodology and documentation, and the firm's international development strategy, including the TATY France project and the structuring of an international network of partner firms. He is also the author of several publications on accounting standards and financial inclusion in Africa (SSRN, Academia.edu).",
     },
     linkedin: null,
   },

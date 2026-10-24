@@ -8,8 +8,6 @@ export interface FirmSection {
   body: LocalizedText;
 }
 
-const pending = (fr: string, en: string): LocalizedText => ({ fr, en });
-
 export const firmSections: FirmSection[] = [
   {
     id: "who-we-are",
@@ -31,29 +29,38 @@ export const firmSections: FirmSection[] = [
   },
   {
     id: "mission",
-    status: "draft",
+    status: "confirmed",
     title: { fr: "Notre mission", en: "Our mission" },
-    body: pending("[ÉNONCÉ DE MISSION À FOURNIR]", "[MISSION STATEMENT TO BE PROVIDED]"),
+    body: {
+      fr: "Accompagner les entreprises et les organisations dans la fiabilisation de leur information financière, la maîtrise de leurs risques et l’amélioration de leur performance, grâce à un audit rigoureux et à des conseils adaptés à leurs enjeux.",
+      en: "Support businesses and organisations in strengthening the reliability of their financial information, managing risks and improving performance through rigorous audit work and advice tailored to their needs.",
+    },
   },
   {
     id: "vision",
-    status: "draft",
+    status: "confirmed",
     title: { fr: "Notre vision", en: "Our vision" },
-    body: pending("[ÉNONCÉ DE VISION À FOURNIR]", "[VISION STATEMENT TO BE PROVIDED]"),
+    body: {
+      fr: "Être un partenaire de référence en audit, expertise comptable et conseil en Côte d’Ivoire et dans l’espace OHADA, reconnu pour la qualité de ses interventions, sa proximité avec ses clients et son ouverture internationale.",
+      en: "Be a trusted partner in audit, accounting and advisory in Côte d’Ivoire and the OHADA region, recognised for the quality of our work, close client relationships and international outlook.",
+    },
   },
   {
     id: "values",
-    status: "draft",
+    status: "confirmed",
     title: { fr: "Nos valeurs", en: "Our values" },
-    body: pending("[VALEURS DU CABINET À FOURNIR]", "[FIRM VALUES TO BE PROVIDED]"),
+    body: {
+      fr: "L’intégrité, l’indépendance et la confidentialité fondent notre pratique. La rigueur, l’écoute et le sens des responsabilités guident nos équipes pour construire des relations de confiance durables avec nos clients et partenaires.",
+      en: "Integrity, independence and confidentiality underpin our practice. Rigour, attentive listening and accountability guide our teams in building lasting relationships of trust with clients and partners.",
+    },
   },
   {
     id: "independence",
     status: "confirmed",
     title: { fr: "Indépendance", en: "Independence" },
     body: {
-      fr: "L'indépendance et la confidentialité sont des valeurs essentielles à notre profession. Nous attachons une grande importance au respect total du secret professionnel, pendant et après la réalisation de chaque mission.",
-      en: "Independence and confidentiality are essential values of our profession. We attach great importance to the complete observance of professional secrecy, both during and after each engagement.",
+      fr: "Un regard objectif et impartial, fondé sur la confidentialité, le respect du secret professionnel et l’absence de compromis sur nos conclusions.",
+      en: "An objective and impartial perspective, grounded in confidentiality, professional secrecy and uncompromising conclusions.",
     },
   },
   {
@@ -61,8 +68,8 @@ export const firmSections: FirmSection[] = [
     status: "confirmed",
     title: { fr: "Éthique", en: "Ethics" },
     body: {
-      fr: "Nous faisons de l'éthique professionnelle un pilier de nos interventions. Grâce à cela, nous entretenons une réputation d'implication, de fiabilité et d'honnêteté intellectuelle auprès des entreprises et des institutions.",
-      en: "We make professional ethics a cornerstone of our engagements. This has earned us a reputation for commitment, reliability and intellectual honesty with the companies and institutions we serve.",
+      fr: "Intégrité, responsabilité et honnêteté intellectuelle guident chacune de nos interventions et fondent la relation de confiance avec nos clients et partenaires.",
+      en: "Integrity, accountability and intellectual honesty guide every engagement and underpin the trust we build with clients and partners.",
     },
   },
   {
@@ -70,17 +77,17 @@ export const firmSections: FirmSection[] = [
     status: "confirmed",
     title: { fr: "Qualité", en: "Quality" },
     body: {
-      fr: "Nos travaux sont systématiquement soumis à des contrôles qualité pour garantir des prestations conformes aux normes et pratiques internationales. Nous avons mis en place un système de contrôle qualité conforme à la Norme internationale ISQC1, assurant que nos collaborateurs respectent les normes professionnelles. Conformément à cette norme, nous disposons d'un manuel de contrôle qualité détaillant les politiques et procédures requises.",
-      en: "Our work is systematically subject to quality controls to ensure services that comply with international standards and practices. We have implemented a quality control system compliant with the International Standard on Quality Control (ISQC1), ensuring that our staff adhere to professional standards. In line with this standard, we maintain a quality control manual detailing the required policies and procedures.",
+      fr: "Des travaux rigoureux, supervisés et soumis à des contrôles qualité afin de garantir des livrables fiables, cohérents et conformes aux exigences professionnelles.",
+      en: "Rigorous, supervised work subject to quality controls to ensure reliable, consistent deliverables that meet professional requirements.",
     },
   },
   {
     id: "standards",
     status: "confirmed",
-    title: { fr: "Normes professionnelles", en: "Professional standards" },
+    title: { fr: "Standards internationaux", en: "International standards" },
     body: {
-      fr: "L'application des exigences de la norme ISQC1 garantit la conformité de nos travaux aux normes professionnelles de l'IFAC (Fédération Internationale des Experts-Comptables). Le cabinet est par ailleurs équipé d'outils conformes au référentiel comptable de l'OHADA : Auditsoft Premier (logiciel d'audit et de commissariat conforme à l'OHADA) et XCOA Liasse fiscale (édition et vérification des états financiers SYSCOHADA et SYCEBNL).",
-      en: "The application of the ISQC1 requirements ensures our work complies with the professional standards of IFAC (the International Federation of Accountants). The firm is also equipped with tools aligned with the OHADA accounting framework: Auditsoft Premier (an OHADA-compliant audit software) and XCOA Liasse fiscale (for producing and checking SYSCOHADA and SYCEBNL financial statements).",
+      fr: "Une équipe intégrant une compétence ACCA et une maîtrise des référentiels internationaux IFRS et ISA, associée à une connaissance approfondie de l’environnement OHADA.",
+      en: "A team with ACCA expertise and a command of the international IFRS and ISA frameworks, combined with in-depth knowledge of the OHADA environment.",
     },
   },
   {
